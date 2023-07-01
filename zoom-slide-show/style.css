@@ -1,0 +1,136 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 18px;
+	--color-text: #fff;
+	--color-bg: #000;
+	--color-link: #fff;
+	--color-link-hover: #fff;
+}
+
+body {
+	margin: 0;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: area-normal,-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	touch-action: none;
+}
+
+main {
+	display: grid;
+	grid-template-areas: 'main';
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	place-items: center;
+}
+
+.slider {
+	grid-area: main;
+	position: relative;
+	overflow: hidden;
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.slider__item {
+	grid-area: 1 / 1 / -1 / -1;
+	position: relative;
+	width: 100%;
+	aspect-ratio: 2.5 / 3;
+	overflow: hidden;
+	display: grid;
+	place-items: center;
+	pointer-events: none;
+	transform: scale(0);
+	opacity: 0;
+	z-index: 3;
+}
+
+.slider__item--current {
+	opacity: 1;
+	pointer-events: auto;
+	z-index: 50;
+	transform: scale(0.3);
+	z-index: 2;
+}
+
+.slider__item--previous {
+	z-index: 1;
+	opacity: 1;
+	transform: scale(1);
+}
+
+.slider__item-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items: center;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+.slider-nav {
+	grid-area: main;
+	padding: 1rem;
+	width: 100%;
+	line-height: 1;
+	display: grid;
+	grid-template-areas: 'prev next';
+	z-index: 2;
+	justify-content: space-between;
+}
+
+.slider-nav__item {
+	line-height: 1.5;
+	position: relative;
+	text-transform: uppercase;
+	display: block;
+	font-family: "afronaut", sans-serif;
+	font-weight: 400;
+	font-size: clamp(1rem,7vw,3rem);
+	transition: opacity 0.3s;
+}
+
+.slider-nav__item span {
+	display: inline-block;
+	pointer-events: none;
+}
+
+.slider-nav__item:hover {
+	opacity: 0.5;
+}
+
+.slider-nav__item--prev {
+	grid-area: prev;
+}
+
+.slider-nav__item--next {
+	grid-area: next;
+}
+
+@media screen and (min-width: 53em) {
+	.frame { 
+		height: 100vh; 
+		grid-gap: 2rem;
+		grid-template-columns: auto auto 1fr;
+		grid-template-rows: auto auto;
+		grid-template-areas: 'title demos sponsor' 'credits ... ... ';
+	}
+	.frame__demos {
+		justify-self: end;
+	}
+}
